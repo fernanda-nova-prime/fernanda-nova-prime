@@ -1,8 +1,8 @@
-import express from 'express';
+const express = require('express');
 const bodyParser = require('body-parser');
-import OpenAI from 'openai';
-import twilio from 'twilio';
-const { MessagingResponse } = twilio;
+const OpenAI = require('openai');
+const twilio = require('twilio');
+require('dotenv').config();
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));

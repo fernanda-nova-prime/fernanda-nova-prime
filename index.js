@@ -1,8 +1,10 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const OpenAI = require('openai');
-const twilio = require('twilio');
-require('dotenv').config();
+import express from 'express';
+import bodyParser from 'body-parser';
+import OpenAI from 'openai';
+import twilio from 'twilio';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -13,14 +15,14 @@ app.post('/webhook', async (req, res) => {
   const incomingMsg = req.body.Body;
   const fromNumber = req.body.From;
 
-  const twiml = new MessagingResponse();
+  const twiml = new twilio.twiml.MessagingResponse();
 
   try {
     const completion = await openai.chat.completions.create({
-      model: "gpt-4",
+      model: 'gpt-4',
       messages: [
-        { role: "system", content: "Eres Fernanda, una asistente cálida y profesional de Nova Prime Accounting. Responde de forma natural y clara a preguntas sobre contabilidad, taxes, servicios de bookkeeping, y agenda de citas." },
-        { role: "user", content: incomingMsg }
+        { role: 'system', content: "Eres Fernanda, una asistente cálida y profesional de Nova Prime Accounting. Responde de forma natural y clara a preguntas sobre contabilidad, taxes, etc." },
+        { role: 'user', content: incomingMsg }
       ],
     });
 

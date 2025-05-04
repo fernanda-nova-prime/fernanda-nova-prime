@@ -1,8 +1,7 @@
-const express = require('express');
+import express from 'express';
 const bodyParser = require('body-parser');
-const { OpenAI } = require('openai');
-const MessagingResponse = require('twilio').twiml.MessagingResponse;
-
+import OpenAI from 'openai';
+import { MessagingResponse } from 'twilio';
 require('dotenv').config();
 
 const app = express();
